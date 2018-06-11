@@ -22,6 +22,8 @@ window.onload=function(){
 chrome.runtime.sendMessage({"cmd": "getState"}, function(response) {
 
     document.getElementById('send').checked = !response.result;
+
+    
     
 });
 
