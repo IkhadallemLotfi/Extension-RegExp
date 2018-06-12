@@ -38,17 +38,17 @@ chrome.runtime.onMessage.addListener(
 
         }
          else if (request.cmd == "regExp") { // chaque fosi que le user écrit un caractère on refaire le calcul (recherche dynamique ) 
-
-            Expression = request.regExp;
-           
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                chrome.tabs.sendMessage(tabs[0].id, {cmd: "calcul",reg:Expression}, function(response) {
-                                
-                    g = response.response;
-                    chrome.browserAction.setBadgeText({text: ''+g+''});
-                });  
-            });
-
+            if(stop == false){
+                Expression = request.regExp;
+            
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                    chrome.tabs.sendMessage(tabs[0].id, {cmd: "calcul",reg:Expression}, function(response) {
+                                    
+                        g = response.response;
+                        chrome.browserAction.setBadgeText({text: ''+g+''});
+                    });  
+                });
+            }
 
         }
         else {
